@@ -14,6 +14,6 @@ router.post('/list', getAllCars);
 router.post('/edit', updateCar);
 
 // Route to delete a car by ID
-router.delete('/cars/:id', deleteCar);
+router.post('/delete', deleteCar);
 
 module.exports = router; // Export the router
