@@ -16,6 +16,10 @@ const carSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    owner_id:{
+        type: String,
+        required:true
+    },
     status: {
         type: String,
         enum: ['active', 'inactive'], // Car status can be active or inactive
