@@ -3,7 +3,19 @@ const { connectToDatabase } = require('./common/connections/mongoConnection');
 const carRental = require('./carRentalApp/app'); 
 const jobPortalRouter = require('./jobPortalApp/routers/jobPortalRouter'); 
 const authRouter = require('./common/routers/authRouter');
-const emailRouter = require('./common/routers/emailSender');
+const emailRouter = require('./common/routers/');
+
+const cors = require('cors');
+
+// Use CORS middleware
+app.use(cors());
+
+// Or configure CORS options if you need more specific settings
+app.use(cors({
+    origin: 'http://your-react-app-url', // Replace with the URL of your React app
+    methods: ['GET', 'POST'], // Allowed methods
+}));
+    
 
 
 
