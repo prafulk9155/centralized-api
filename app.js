@@ -4,7 +4,7 @@ const { connectToDatabase } = require('./common/connections/mongoConnection');
 const carRental = require('./carRentalApp/app'); 
 const jobPortalRouter = require('./jobPortalApp/routers/jobPortalRouter'); 
 const authRouter = require('./common/routers/authRouter');
-const emailRouter = require('./common/routers/emailRouter'); // Ensure this is the correct path
+const emailRouter = require('./common/routers/emailSender'); // Ensure this is the correct path
 
 const app = express(); // Initialize Express app
 
