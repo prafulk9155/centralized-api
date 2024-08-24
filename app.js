@@ -1,49 +1,48 @@
 const express = require('express');
+const cors = require('cors');
 const { connectToDatabase } = require('./common/connections/mongoConnection'); 
 const carRental = require('./carRentalApp/app'); 
 const jobPortalRouter = require('./jobPortalApp/routers/jobPortalRouter'); 
 const authRouter = require('./common/routers/authRouter');
-const emailRouter = require('./common/routers/');
+const emailRouter = require('./common/routers/emailRouter'); // Update with correct email router path
 
-const cors = require('cors');
+const app = express(); // Initialize Express app
 
-// Use CORS middleware
+// Use CORS middleware with default settings (allow all origins)
 app.use(cors());
 
-// Or configure CORS options if you need more specific settings
-app.use(cors({
-    origin: '*', // Replace with the URL of your React app
-    methods: ['GET', 'POST'], // Allowed methods
-}));
+// or configure CORS options if you want to restrict origins
+// app.use(cors({
+//     origin: ['http://localhost:3000'], // allowed origin(s)
+//     methods: ['GET', 'POST'], // Allowed methods
+// }));
 
+app.use(express.json()); // Use express.json() for parsing JSON request bodies
 
-
-
-const app = express();
-app.use(express.json());
-
-
+// Test endpoint to verify server
 app.get('/', (req, res) => {
     res.send({
-        error:false, message:"Centralized Api Running..."
+        error: false,
+        message: "Centralized API Running..."
     });
 });
+
 // Connect to the database for Car Rental
 connectToDatabase('carRental');
 
-
-
-// Use Car Rental management routes under '/carRental'
+// Use Car Rental management routes under '/api/carRental'
 app.use('/api/carRental', carRental);
 
 // Connect to the database for Job Portal
 connectToDatabase('jobPortal');
 
-// Use Job Portal routes under '/jobPortal'
+// Use Job Portal routes under '/api/jobPortal'
 app.use('/api/jobPortal', jobPortalRouter);
 
-// Use common Auth routes
+// Use common Auth routes under '/api/auth'
 app.use('/api/auth', authRouter);
+
+// Use email routes under '/api/email'
 app.use('/api/email', emailRouter);
 
 // Start the server
