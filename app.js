@@ -3,6 +3,9 @@ const { connectToDatabase } = require('./common/connections/mongoConnection');
 const carRental = require('./carRentalApp/app'); 
 const jobPortalRouter = require('./jobPortalApp/routers/jobPortalRouter'); 
 const authRouter = require('./common/routers/authRouter');
+const emailRouter = require('./common/routers/emailSender');
+
+
 
 const app = express();
 app.use(express.json());
@@ -29,6 +32,7 @@ app.use('/api/jobPortal', jobPortalRouter);
 
 // Use common Auth routes
 app.use('/api/auth', authRouter);
+app.use('/api/email', emailRouter);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
