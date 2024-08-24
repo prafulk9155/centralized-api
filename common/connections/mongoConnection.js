@@ -1,13 +1,10 @@
-// common/connections/mongoConnection.js
+
 const mongoose = require('mongoose');
-require('dotenv').config(); // Load environment variables
-
-
+require('dotenv').config(); 
 
 const connectToDatabase = async (appType) => {
     let dbURI;
 
-    // Choose the database URI based on the application type
     if (appType === 'carRental') {
         dbURI = process.env.MONGODB_CAR_RENTAL_URI;
     } else if (appType === 'jobPortal') {
@@ -17,10 +14,7 @@ const connectToDatabase = async (appType) => {
     }
 
     try {
-        await mongoose.connect(dbURI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(dbURI); // Removed deprecated options
         console.log(`Connected to MongoDB: ${appType}`);
     } catch (err) {
         console.error(`Failed to connect to MongoDB: ${appType}`, err);

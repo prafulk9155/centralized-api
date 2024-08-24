@@ -5,7 +5,9 @@ const router = express.Router();
 
 // Example route for Car Rental API
 router.get('/', (req, res) => {
-    res.send('Car Rental main API');
+    res.send({
+        error:false, message:"Car Rental Api Running..."
+    });
 });
 
 router.use('/car', carApi);

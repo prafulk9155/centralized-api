@@ -7,8 +7,16 @@ const authRouter = require('./common/routers/authRouter');
 const app = express();
 app.use(express.json());
 
+
+app.get('/', (req, res) => {
+    res.send({
+        error:false, message:"Centralized Api Running..."
+    });
+});
 // Connect to the database for Car Rental
 connectToDatabase('carRental');
+
+
 
 // Use Car Rental management routes under '/carRental'
 app.use('/api/carRental', carRental);

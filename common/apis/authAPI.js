@@ -1,5 +1,5 @@
 // common/apis/authAPI.js
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel'); // User model shared across applications
 require('dotenv').config(); // Load environment variables
