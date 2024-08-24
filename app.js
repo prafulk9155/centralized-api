@@ -12,10 +12,10 @@ app.use(cors());
 
 // Or configure CORS options if you need more specific settings
 app.use(cors({
-    origin: 'http://your-react-app-url', // Replace with the URL of your React app
+    origin: '*', // Replace with the URL of your React app
     methods: ['GET', 'POST'], // Allowed methods
 }));
-    
+
 
 
 
