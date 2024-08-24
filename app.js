@@ -4,18 +4,15 @@ const { connectToDatabase } = require('./common/connections/mongoConnection');
 const carRental = require('./carRentalApp/app'); 
 const jobPortalRouter = require('./jobPortalApp/routers/jobPortalRouter'); 
 const authRouter = require('./common/routers/authRouter');
-const emailRouter = require('./common/routers/emailRouter'); // Update with correct email router path
+const emailRouter = require('./common/routers/emailRouter'); // Ensure this is the correct path
 
 const app = express(); // Initialize Express app
 
-// Use CORS middleware with default settings (allow all origins)
-app.use(cors());
-
-// or configure CORS options if you want to restrict origins
-// app.use(cors({
-//     origin: ['http://localhost:3000'], // allowed origin(s)
-//     methods: ['GET', 'POST'], // Allowed methods
-// }));
+// Configure CORS to allow all origins
+app.use(cors({
+    origin: '*', // Allow all origins (consider whitelisting in production)
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
+}));
 
 app.use(express.json()); // Use express.json() for parsing JSON request bodies
 
