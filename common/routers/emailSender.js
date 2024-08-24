@@ -32,14 +32,14 @@ router.post("/send-email", async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER, // Use environment variable
-        pass: process.env.EMAIL_PASS, // Use environment variable
+        user: 'prafulk7050@gmail.com' ,// Use environment variable
+        pass: 'kqmormexzxdqoitj', // Use environment variable
       },
     });
 
     // Mail options for the recipient
     const recipientMailOptions = {
-      from: process.env.EMAIL_USER, // your email address
+      from: 'prafulk7050@gmail.com', // your email address
       to: "prafulk9155@gmail.com", // recipient's email address
       subject: `New message from ${name} (${email}) from your portfolio `,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
