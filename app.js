@@ -3,6 +3,7 @@ const { connectToDatabase } = require('./common/connections/mongoConnection');
 const carRental = require('./carRentalApp/app'); 
 const jobPortalRouter = require('./jobPortalApp/routers/jobPortalRouter'); 
 const authRouter = require('./common/routers/authRouter');
+const tripRouter = require('./tripGuideApp/routers/tripGuideRouter');
 const emailRouter = require('./common/routers/emailSender');
 
 
@@ -16,6 +17,11 @@ app.get('/', (req, res) => {
         error:false, message:"Centralized Api Running..."
     });
 });
+app.get('/api', (req, res) => {
+    res.send({
+        error:false, message:"Centralized Main Api Running..."
+    });
+});
 // Connect to the database for Car Rental
 connectToDatabase('carRental');
 
@@ -23,7 +29,7 @@ connectToDatabase('carRental');
 
 // Use Car Rental management routes under '/carRental'
 app.use('/api/carRental', carRental);
-
+app.use('/api/tripGuide', tripRouter);
 // Connect to the database for Job Portal
 connectToDatabase('jobPortal');
 
