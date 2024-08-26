@@ -6,7 +6,7 @@ require('dotenv').config(); // Load environment variables
 
 // Signup Function
 const signUp = async (req, res) => {
-    const { username, email, password } = req.body.data;
+    const { username, email, password, usertype, application } = req.body.data;
 
     try {
         // Check for missing fields
@@ -28,6 +28,8 @@ const signUp = async (req, res) => {
             username,
             email,
             password: hashedPassword,
+            usertype,
+            application
         });
 
         // Save the user to the database
@@ -49,7 +51,7 @@ const login = async (req, res) => {
         // Find the user by email
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ error: 'Invalid credentials' });
+            return res.status(400).json({ error: 'Invalid User ID' });
         }
 
         // Check if the password matches

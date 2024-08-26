@@ -19,6 +19,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    usertype: {
+        type: String,
+        required: true,
+    },
+    application: {
+        type: String,
+        required: true,
+    },
 });
 
 // Create a User model

@@ -2,25 +2,27 @@
 const Car = require('../db/models/carModel'); 
 
 const addCar = async (req, res) => {
-    const { name, model, year, status, owner_id } = req.body.data;
+    const { name, model, year, status, owner_id, type, color, mileage, speed, plateNumber, registrationNumber, insuranceNumber,isAssigned } = req.body.data;
     try {
-        const car = new Car({ name, model, year, status,owner_id });
+        const car = new Car({ name, model, year, status, owner_id, type, color, mileage, speed, plateNumber, registrationNumber, insuranceNumber ,isAssigned});
         await car.save();
-        res.status(201).json({error:false, message:"Vehicle added successfully"}); // Respond with the created car
+        res.status(201).json({ error: false, message: "Vehicle added successfully", data: car }); 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error:true,message: error.message });
+        res.status(500).json({ error: true, message: error.message });
     }
 };
+
 
 // Get all cars
 const getAllCars = async (req, res) => {
     try {
-        const cars = await Car.find(); // Fetch all cars
-        res.status(200).json({error:false,data:cars});
+        const cars = await Car.find({ status: 'active' }, );
+        const totalCount = cars.length;      // Fetch all cars with active status
+        res.status(200).json({ error: false, data: cars, total_count: totalCount});
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error:true,message: 'Server error' });
+        res.status(500).json({ error: true, message: error.message });
     }
 };
 

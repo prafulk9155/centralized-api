@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.use('/car', carApi);
+router.use('/vehicle', carApi);
 
 
 module.exports = router;
