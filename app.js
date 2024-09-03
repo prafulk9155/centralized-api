@@ -4,6 +4,7 @@ const carRental = require('./carRentalApp/app');
 const jobPortalRouter = require('./jobPortalApp/routers/jobPortalRouter'); 
 const authRouter = require('./common/routers/authRouter');
 const tripRouter = require('./tripGuideApp/routers/tripGuideRouter');
+const agroRouter = require('./agro/app');
 const emailRouter = require('./common/routers/emailSender');
 
 
@@ -30,6 +31,7 @@ connectToDatabase('carRental');
 // Use Car Rental management routes under '/carRental'
 app.use('/api/carRental', carRental);
 app.use('/api/tripGuide', tripRouter);
+app.use('/api/agro', agroRouter);
 // Connect to the database for Job Portal
 connectToDatabase('jobPortal');
 
@@ -41,7 +43,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/email', emailRouter);
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT =5555;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
